@@ -62,7 +62,7 @@ pipeline {
       steps {
         container('maven') {
           dir('charts/jenkinx-spring-app') {
-            //sh "jx step changelog --version v\$(cat ../../VERSION)"
+            sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             sh "ls -lah"
             sh "cat Chart.yaml"
