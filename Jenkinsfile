@@ -65,10 +65,13 @@ pipeline {
 
             sh "ls -lah"
             sh "cat Chart.yaml"
+            sh "cat values.yaml"
             
             // release the helm chart
             sh "jx step helm release"
 
+            sh "cat values.yaml"
+            
             // promote through all 'Auto' promotion Environments
             //sh "jx --log-level='debug' --verbose=true promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
           }
