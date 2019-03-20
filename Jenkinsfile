@@ -50,7 +50,7 @@ pipeline {
 //          sh "mvn clean deploy"
 //          sh "skaffold version"
 //          sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
-//          sh "jx --log-level='debug' --verbose=true  step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
+          sh "jx --log-level='debug' --verbose=true  step post build --image localhost/test/app:0.0.1"
         }
       }
     }
