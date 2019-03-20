@@ -44,12 +44,13 @@ pipeline {
 //          sh "jx --log-level='debug' --verbose=true  step git credentials"
 
           // so we can retrieve the version in later steps
-//          sh "echo \$(jx-release-version) > VERSION"
+          sh "echo \$(jx-release-version) > VERSION"
 //          sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
 //          sh "jx --log-level='debug' --verbose=true  step tag --version \$(cat VERSION)"
 //          sh "mvn clean deploy"
 //          sh "skaffold version"
 //          sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
+          sh "export VERSION=`cat VERSION`"
           sh "jx --log-level='debug' --verbose=true  step post build --image localhost/test/app:0.0.1"
         }
       }
