@@ -39,18 +39,18 @@ pipeline {
         container('maven') {
 
           // ensure we're not on a detached head
-          sh "git checkout master"
-          sh "git config --global credential.helper store"
-          sh "jx --log-level='debug' --verbose=true  step git credentials"
+//          sh "git checkout master"
+//          sh "git config --global credential.helper store"
+//          sh "jx --log-level='debug' --verbose=true  step git credentials"
 
           // so we can retrieve the version in later steps
-          sh "echo \$(jx-release-version) > VERSION"
-          sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
-          sh "jx --log-level='debug' --verbose=true  step tag --version \$(cat VERSION)"
-          sh "mvn clean deploy"
-          sh "skaffold version"
+//          sh "echo \$(jx-release-version) > VERSION"
+//          sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
+//          sh "jx --log-level='debug' --verbose=true  step tag --version \$(cat VERSION)"
+//          sh "mvn clean deploy"
+//          sh "skaffold version"
 //          sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
-          sh "jx --log-level='debug' --verbose=true  step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
+//          sh "jx --log-level='debug' --verbose=true  step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
         }
       }
     }
@@ -63,6 +63,9 @@ pipeline {
           dir('charts/jenkinx-spring-app') {
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
+            sh "ls -lah"
+            sh "cat Chart.yaml"
+            
             // release the helm chart
             sh "jx step helm release"
 
