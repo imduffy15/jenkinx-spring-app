@@ -61,7 +61,7 @@ pipeline {
       steps {
         container('maven') {
           dir('charts/jenkinx-spring-app') {
-            sh "jx step changelog --version v\$(cat ../../VERSION)"
+            //sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             sh "ls -lah"
             sh "cat Chart.yaml"
@@ -70,7 +70,7 @@ pipeline {
             sh "jx step helm release"
 
             // promote through all 'Auto' promotion Environments
-            sh "jx --log-level='debug' --verbose=true promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
+            //sh "jx --log-level='debug' --verbose=true promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
           }
         }
       }
